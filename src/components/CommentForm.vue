@@ -16,6 +16,7 @@
 
       >
       </textarea>
+
     </div>
     <div class="picture-container">
       <img
@@ -39,7 +40,7 @@
 export default {
   name: "CommentForm",
   props: {
-    replyId: Number,
+    replyId: String,
     currentUser: Object,
     handleComment: Function,
     commentFormType: String,
@@ -71,7 +72,7 @@ export default {
         TypeCommentedRessource:"ressources",
         id_user: this.currentUser.username,
         content: "",
-        IdCommentReplied: null
+        IdCommentReplied:null
       }
     };
   },
@@ -84,8 +85,7 @@ export default {
     },
 
     handleSend() {
-
-
+      
       console.log(this.commentDB)
       this.commentDB.content=this.commentWrited;
       this.handleCommentDB(this.commentDB)

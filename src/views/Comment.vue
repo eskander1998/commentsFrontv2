@@ -2,6 +2,7 @@
   <div class="comment-container">
     <Card
       :_id="comment._id"
+      :comment="comment"
       :content="comment.content"
       :date="comment.date"
       :id_user="comment.id_user"
@@ -56,7 +57,7 @@ export default {
   },
   created(){
 
-    console.log("test comment comment.vue")
+    console.log("comment data")
     console.log(this.comment)
   }
 };

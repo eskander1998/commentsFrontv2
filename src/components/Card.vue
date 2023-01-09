@@ -11,10 +11,10 @@
         </div>
         <div class="username-container">
           <span class="username">
-            {{ id_user }}
+            {{ comment.id_user }}
           </span>
         </div>
-        <div v-if="currentUser.username === id_user" class="you-label">
+        <div v-if="currentUser.username === comment.id_user" class="you-label">
           <span>you</span>
         </div>
         <div class="createdAt-container">
@@ -50,7 +50,8 @@
           </button>
         </div>
       </div>
-      <div v-if="currentUser.username === id_user" class="edit-container">
+      
+      <div v-if="currentUser.username === comment.id_user" class="edit-container">
         <div
           @click="this.deleteModalOpen = !this.deleteModalOpen"
           class="delete"
@@ -82,7 +83,7 @@
     v-if="replyFormOpen"
     :threadId="threadId"
     :replyId="_id"
-    :replyingTo="id_user"
+    :replyingTo="comment.id_user"
     :commentFormType="commentFormType"
     :handleComment="handleComment"
     :currentUser="currentUser"
@@ -145,13 +146,14 @@ export default {
     handleDeletion: Function,
     commentFormType: String,
     threadId: String,
+    comment : Object
   },
   created(){
 
 console.log("currentUser.username")
 console.log(this.currentUser.username)
-console.log("id_user")
-console.log(this.id_user)
+console.log("comment.id_user")
+console.log(this.comment.id_user)
 },
   data: function () {
     return {

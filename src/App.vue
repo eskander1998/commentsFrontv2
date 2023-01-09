@@ -8,7 +8,7 @@
         :currentUser="currentUser"
         :handleComment="handleComment"
         :handleDeletion="handleDeletion"
-        v-bind:comment="comment"
+        :comment="comment"
       />
     </div>
     <CommentForm
@@ -78,34 +78,31 @@ export default {
       axios.post('http://localhost:3000/api/comments/comment', comment).then((response) => {
         console.log(response.data)
       });
+
     },
     handleComment(comment) {
 
-      axios.post('http://localhost:3000/api/comments/comment', comment).then((response) => {
-        console.log(response.data)
-      });
-      
+
       const commentType = comment.type;
       switch (commentType) {
         case "comment-new":
 
           this.comments.push({
-
             // _id: comment._id,
             // content: comment.commentInput,
             // createdAt: "Today",
             // score: 0,
-            // user: comment.id_user,
+            // user: this.currentUser,
             // replies: [],
 
-            _id: comment._id,
+
+
+                _id: comment._id,
             IdCommentedRessource: comment.IdCommentedRessource,
         TypeCommentedRessource:comment.TypeCommentedRessource,
         id_user: this.currentUser.username.id_user,
         content: comment.commentInput,
         IdCommentReplied: comment.IdCommentReplied
-
-
           });
           break;
         case "comment-reply":
@@ -140,6 +137,9 @@ export default {
 
         case "comment-update":
           for (let i = 0; i < this.comments.length; i++) {
+            console.log("comment-update test ")
+            console.log(comment.threadId)
+
             if (this.comments[i]._id === comment.threadId) {
               this.comments[i].content = comment.commentInput;
               console.log(this.comments[i]);
